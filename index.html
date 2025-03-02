@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+     
+    <style>/* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('background.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        /* Container */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: rgba(42, 93, 195, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        /* Form Section */
+        .form-section {
+            padding: 20px;
+            background-color: #9abaf7;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            text-align: center;
+        }
+        
+        .form-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            border-color: #007BFF;
+        }
+        
+        h2 {
+            color: #000000;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #000000;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, textarea:focus {
+            border-color: #002954;
+            outline: none;
+        }
+        
+        /* Button Styles */
+        button {
+            padding: 12px 24px;
+            background-color: #a4d0ff;
+            color: rgb(0, 0, 0);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        button:hover {
+            background-color: #002c5b;
+            transform: scale(1.05);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+        }
+        
+        button:active {
+            background-color: #003f8b;
+        }
+        
+        /* Resume Section */
+        .resume-section {
+            padding: 20px;
+            background-color: #000000;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        #resume-preview {
+            background-color: #9abaf7;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        #resume-preview img {
+            display: block;
+            max-width: 150px;
+            height: auto;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #resume-preview img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        #resume-preview div {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        #resume-preview div[contenteditable="true"]:hover {
+            background-color: #c0e8ff;
+            border-color: #007BFF;
+        }
+        
+        /* Share Link Input */
+        input#share-link {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+        
+            #resume-preview img {
+                max-width: 120px;
+                height: auto;
+            }
+        }
+        </style>
+</head>
+<body>
+    <div class="container">
+        <form id="resume-form" class="form-section">
+            <h2>Resume Builder</h2>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <textarea id="education" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="skills">Skills:</label>
+                <textarea id="skills" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="experience">Experience:</label>
+                <textarea id="experience" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="profile-picture">Profile Picture:</label>
+                <input type="file" id="profile-picture" accept="image/*">
+            </div>
+            <button type="submit">Generate Resume</button>
+        </form>
+
+        <section id="resume-preview" class="resume-section">
+            <h3>Resume Preview</h3>
+            <img id="preview-profile-picture" alt="Profile Picture">
+            <div id="preview-name"></div>
+            <div id="preview-email"></div>
+            <div id="preview-phone"></div>
+            <div id="preview-education"></div>
+            <div id="preview-skills"></div>
+            <div id="preview-experience"></div>
+            <button id="download-pdf">Download PDF</button>
+        </section>
+    </div>
+
+    
+    <script>document.getElementById('resume-form')?.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const phone = document.getElementById('phone').value;
+    const education = document.getElementById('education').value;
+    const skills = document.getElementById('skills').value;
+    const experience = document.getElementById('experience').value;
+    const username = document.getElementById('username').value;
+    const profilePicture = document.getElementById('profile-picture').files[0];
+    const profilePicturePreview = document.getElementById('preview-profile-picture');
+
+    if (profilePicture) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            profilePicturePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(profilePicture);
+    }
+
+    // Populate the resume preview section with form values
+    document.getElementById('preview-name').textContent = name;
+    document.getElementById('preview-email').textContent = email;
+    document.getElementById('preview-phone').textContent = phone;
+    document.getElementById('preview-education').textContent = education;
+    document.getElementById('preview-skills').textContent = skills;
+    document.getElementById('preview-experience').textContent = experience;
+
+    try {
+        const response = await fetch('http://localhost:3000/create-resume', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, phone, education, skills, experience, username })
+        });
+        const data = await response.json();
+        document.getElementById('share-link').value = data.url;
+    } catch (error) {
+        console.error('Error creating resume:', error);
+    }
+});
+
+// Handle PDF download
+document.getElementById('download-pdf')?.addEventListener('click', function() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text(document.getElementById('preview-name').textContent || '', 10, 10);
+    doc.text(document.getElementById('preview-email').textContent || '', 10, 20);
+    doc.text(document.getElementById('preview-phone').textContent || '', 10, 30);
+    doc.text('Education:', 10, 40);
+    doc.text(document.getElementById('preview-education').textContent || '', 10, 50);
+    doc.text('Skills:', 10, 60);
+    doc.text(document.getElementById('preview-skills').textContent || '', 10, 70);
+    doc.text('Experience:', 10, 80);
+    doc.text(document.getElementById('preview-experience').textContent || '', 10, 90);
+    doc.save('resume.pdf');
+});
+</script>
+</body>
+</html>
